@@ -156,6 +156,7 @@ init(){
 }
 
 list(){
+  set -x
   tags="$*"
   greppattern="(${tags// /\|})"
   create_index
@@ -176,7 +177,7 @@ create_index(){
 }
 
 columnize(){
-  i=1; lines="$(cat -)"; header="$( echo "$lines" | head -n0 )"; output="";
+  i=1; lines="$(cat -)"; header="$( echo "$lines" | head -n1 )"; output="";
   rm "${TMP}".col.* &>/dev/null
   echo -e "$header";
   for status in "${statuses[@]}"; do 
